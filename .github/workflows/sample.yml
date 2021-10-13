@@ -15,9 +15,9 @@ jobs:
         env:
           TZ: UTC
           MYSQL_DATABASE: sample
-          MYSQL_USER: user
+          MYSQL_USER: sample_user
           MYSQL_PASSWORD: p@ssw0rd
-          MYSQL_ROOT_PASSWORD: p@ssword
+          MYSQL_ROOT_PASSWORD: p@ssw0rds
         options: --health-cmd "mysqladmin ping" --health-interval 20s --health-timeout 10s --health-retries 10
     steps:
       - name: exec sql
