@@ -1,0 +1,24 @@
+name: sample
+on:
+  push:
+    branches:
+      - master
+jobs:
+  prepare:
+    name: prepare
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0.11
+        ports:
+          - 3306:3306
+        env:
+          TZ: UTC
+          MYSQL_DATABASE: sample
+          MYSQL_USER: user
+          MYSQL_PASSWORD: p@ssw0rd
+          MYSQL_ROOT_PASSWORD: p@ssword
+    step:
+      - name: exec sql
+        run: |
+          mysql -h 127.0.0.1 -uuser -pp@ssw0rd -e "SELECT 1"
