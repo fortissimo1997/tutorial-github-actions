@@ -18,7 +18,7 @@ jobs:
           MYSQL_USER: user
           MYSQL_PASSWORD: p@ssw0rd
           MYSQL_ROOT_PASSWORD: p@ssword
-    step:
+    steps:
       - name: exec sql
         run: |
           mysql -h 127.0.0.1 -uuser -pp@ssw0rd -e "SELECT 1"
