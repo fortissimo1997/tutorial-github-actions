@@ -16,10 +16,10 @@ jobs:
           TZ: UTC
           MYSQL_DATABASE: sample
           MYSQL_USER: sample_user
-          MYSQL_PASSWORD: p@ssw0rd
-          MYSQL_ROOT_PASSWORD: p@ssw0rds
+          MYSQL_PASSWORD: PASSWORD
+          MYSQL_ROOT_PASSWORD: password
         options: --health-cmd "mysqladmin ping" --health-interval 20s --health-timeout 10s --health-retries 10
     steps:
       - name: exec sql
         run: |
-          mysql -h 127.0.0.1 -uuser -pp@ssw0rd -e "SELECT 1"
+          mysql -h 127.0.0.1 -uuser -pPASSWORD -e "SELECT 1"
