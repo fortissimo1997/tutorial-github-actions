@@ -18,6 +18,7 @@ jobs:
           MYSQL_USER: user
           MYSQL_PASSWORD: p@ssw0rd
           MYSQL_ROOT_PASSWORD: p@ssword
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
     steps:
       - name: exec sql
         run: |
