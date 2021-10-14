@@ -22,4 +22,4 @@ jobs:
     steps:
       - name: exec sql
         run: |
-          mysql -h 127.0.0.1 -uuser -pPASSWORD -e "SELECT 1"
+          mysql -h 127.0.0.1 -usample_user -pPASSWORD -e "SELECT 1"
