@@ -17,8 +17,8 @@ jobs:
           MYSQL_DATABASE: sample
           MYSQL_USER: sample_user
           MYSQL_PASSWORD: PASSWORD
-          MYSQL_ROOT_PASSWORD: sample_password
-        options: --health-cmd "mysqladmin ping" --health-interval 20s --health-timeout 10s --health-retries 10
+          MYSQL_ROOT_PASSWORD: password
+        options: --health-cmd "mysqladmin ping -u root -p password" --health-interval 20s --health-timeout 10s --health-retries 10
     steps:
       - name: exec sql
         run: |
