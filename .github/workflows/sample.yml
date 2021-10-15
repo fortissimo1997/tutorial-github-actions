@@ -31,6 +31,8 @@ jobs:
   main:
     name: main
     runs-on: ubuntu-latest
+    needs:
+      - prepare
     services:
       mysql:
         image: mysql:8.0
