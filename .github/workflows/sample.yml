@@ -12,6 +12,8 @@ jobs:
         image: mysql:8.0
         ports:
           - 3306:3306
+        volumes:
+          - database:/var/lib/mysql
         env:
           TZ: UTC
           MYSQL_DATABASE: sample
@@ -20,6 +22,9 @@ jobs:
           MYSQL_ROOT_PASSWORD: password
         options: --health-cmd "mysqladmin ping -uroot -ppassword" --health-interval 20s --health-timeout 10s --health-retries 10
     steps:
-      - name: exec sql
+      - name: create table
         run: |
-          mysql -h 127.0.0.1 -usample_user -pPASSWORD -e "SELECT 1"
+          mysql -h 127.0.0.1 -usample_user -pPASSWORD -e "use sample; create table dummy_table (id int(11) not null auto_increment, title varchar(255) not null, primary key (id))"
+      - name: insert dummy data
+        run: |
+          mysql -h 127.0.0.1 -usample_user -pPASSWORD -e "use sample; insert into dummy_table (title) values ('foo'), ('bar'), ('baz')"
