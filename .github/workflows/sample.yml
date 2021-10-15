@@ -28,6 +28,9 @@ jobs:
       - name: insert dummy data
         run: |
           mysql -h 127.0.0.1 -usample_user -pPASSWORD -e "use sample; insert into dummy_table (title) values ('foo'), ('bar'), ('baz')"
+      - run: ls
+      - run: ls
+        working-directory: database
       - uses: actions/upload-artifact@master
         with:
           name: mysql-volume
