@@ -31,3 +31,5 @@ jobs:
           mysql -h 127.0.0.1 -usample_user -pPASSWORD -e "use sample; select * from dummy_table"
       - name: debug
         run: docker container ls
+      - name: restart mysql
+        run: docker restart $(docker container ls | grep mysql | awk '{print $1}')
