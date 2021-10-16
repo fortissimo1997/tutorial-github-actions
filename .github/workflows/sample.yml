@@ -30,16 +30,16 @@ jobs:
       - uses: actions/checkout@v2
       - name: setup database
         run: |
-          mysql -h 127.0.0.1 -usample_user -pPASSWORD < .github/workflows/scripts/sql/setup.sql
+          mysql -h 127.0.0.1 -uroot -ppassword < .github/workflows/scripts/sql/setup.sql
       - name: setup database2
         run: |
-          mysql -h 127.0.0.1 -usample_user -pPASSWORD < .github/workflows/scripts/sql/setup2.sql
+          mysql -h 127.0.0.1 -uroot -ppassword < .github/workflows/scripts/sql/setup2.sql
       - name: select dummy data
         run: |
-          mysql -h 127.0.0.1 -usample_user -pPASSWORD -e "use sample; select * from dummy_table"
+          mysql -h 127.0.0.1 -uroot -ppassword -e "use sample; select * from dummy_table"
       - name: select sample data
         run: |
-          mysql -h 127.0.0.1 -usample_user -pPASSWORD -e "use sample2; select * from sample_table"
+          mysql -h 127.0.0.1 -uroot -ppassword -e "use sample2; select * from sample_table"
       - name: debug
         run: docker container ls
       - name: restart mysql
