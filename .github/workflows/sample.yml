@@ -42,3 +42,5 @@ jobs:
         run: docker restart $(docker container ls | grep mysql | awk '{print $1}')
       - name: find sql file
         run: find . -name setup.sql
+      - name: ls files
+        run: ls -a
