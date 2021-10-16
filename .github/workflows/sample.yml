@@ -28,12 +28,9 @@ jobs:
         options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 10
     steps:
       - uses: actions/checkout@v2
-      - name: create table
+      - name: setup database
         run: |
-          mysql -h 127.0.0.1 -usample_user -pPASSWORD -e "use sample; create table dummy_table (id int(11) not null auto_increment, title varchar(255) not null, primary key (id))"
-      - name: insert dummy data
-        run: |
-          mysql -h 127.0.0.1 -usample_user -pPASSWORD -e "use sample; insert into dummy_table (title) values ('foo'), ('bar'), ('baz')"
+          mysql -h 127.0.0.1 -usample_user -pPASSWORD < .github/workflows/scripts/sql/setup.sql
       - name: select dummy data
         run: |
           mysql -h 127.0.0.1 -usample_user -pPASSWORD -e "use sample; select * from dummy_table"
@@ -41,7 +38,3 @@ jobs:
         run: docker container ls
       - name: restart mysql
         run: docker restart $(docker container ls | grep mysql | awk '{print $1}')
-      - name: find sql file
-        run: find . -name setup.sql
-      - name: ls files
-        run: ls -a
