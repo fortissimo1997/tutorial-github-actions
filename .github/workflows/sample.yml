@@ -27,14 +27,14 @@ jobs:
           TZ: UTC
         options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 10
       minio:
-        image: minio/minio:latest
+        image: bitnami/minio:latest
         ports:
           - 9000:9000
         env:
           MINIO_ACCESS_KEY: foo
           MINIO_SECRET_KEY: bar
           MINIO_REGION: us-east-1
-        options: --entrypoint "mkdir /data; server /data"
+        options: --name minio-server
     steps:
       - uses: actions/checkout@v2
       - name: setup database
