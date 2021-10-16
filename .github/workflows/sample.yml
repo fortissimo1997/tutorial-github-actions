@@ -34,7 +34,7 @@ jobs:
           MINIO_ACCESS_KEY: foo
           MINIO_SECRET_KEY: bar
           MINIO_REGION: us-east-1
-        options: --entrypoint "server /data"
+        options: --entrypoint "mkdir /data; server /data"
     steps:
       - uses: actions/checkout@v2
       - name: setup database
